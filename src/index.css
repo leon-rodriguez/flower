@@ -1,13 +1,258 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Dancing Script', cursive;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  overflow: hidden;
+}
+
+.girar {
+  animation-name: girar;
+  animation-duration: 2000ms;
+  animation-timing-function: linear;
+}
+
+.caer_derecha {
+  animation-name: caer_petalo_derecha;
+  animation-duration: 1200ms;
+  animation-timing-function: linear;
+  animation-delay: 100ms;
+  animation-fill-mode: forwards;
+}
+
+.caer_izquierda {
+  animation-name: caer_petalo_izquierda;
+  animation-duration: 1200ms;
+  animation-timing-function: linear;
+  animation-delay: 100ms;
+  animation-fill-mode: forwards;
+}
+
+.caer_arriba {
+  animation-name: caer_petalo_arriba;
+  animation-duration: 1200ms;
+  animation-timing-function: linear;
+  animation-delay: 100ms;
+  animation-fill-mode: forwards;
+}
+
+.caer_abajo {
+  animation-name: caer_petalo_abajo;
+  animation-duration: 1200ms;
+  animation-timing-function: linear;
+  animation-delay: 100ms;
+  animation-fill-mode: forwards;
+}
+
+.final {
+  animation-name: pantalla_final;
+  animation-duration: 1200ms;
+  animation-timing-function: linear;
+  animation-delay: 100ms;
+  animation-fill-mode: forwards;
+}
+
+.typewriter h1 {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em; /* Adjust as needed */
+  animation: typing 1s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+.desaparecer {
+  animation: desaparecer_texto 2s linear forwards;
+}
+/* .linea-escribir{} */
+.permanecer {
+  animation: permanecer_texto 2s linear forwards;
+}
+#cloud {
+  background: rgba(255, 255, 255);
+  width: 150px;
+  height: 50px;
+  border-radius: 150px;
+  box-shadow: 18px 10px rgba(0, 0, 0, 0.2);
+  /* animation: move 10s linear forwards; */
+  position: absolute;
+  /* top: 130px;
+  left: -170px; */
+}
+
+#cloud:after {
+  content: '';
+  background: rgba(255, 255, 255);
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  top: -25px;
+  left: 25px;
+}
+
+#cloud:before {
+  content: '';
+  background: rgba(255, 255, 255);
+  position: absolute;
+  width: 85px;
+  height: 75px;
+  border-radius: 50%;
+  top: -45px;
+  right: 20px;
+}
+
+@keyframes move {
+  0% {
+    transform: translatex(0);
+  }
+  100% {
+    /* transform: translatex(800px); */
+    transform: translateX(120vw);
+  }
+}
+
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes caer_petalo_derecha {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+    right: 30px;
+  }
+  50% {
+    transform: translateY(-100px);
+    right: -30px;
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-50px);
+    right: -80px;
+    opacity: 0;
+  }
+}
+
+@keyframes caer_petalo_izquierda {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+    left: 30px;
+  }
+  50% {
+    transform: translateY(-100px);
+    left: -30px;
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-50px);
+    left: -80px;
+    opacity: 0;
+  }
+}
+
+@keyframes caer_petalo_arriba {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+    top: 30px;
+  }
+  50% {
+    transform: translateX(100px);
+    top: -30px;
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(50px);
+    top: -80px;
+    opacity: 0;
+  }
+}
+
+@keyframes caer_petalo_abajo {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+    bottom: 30px;
+  }
+  50% {
+    transform: translateX(80px);
+    bottom: -60px;
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(50px);
+    bottom: -80px;
+    opacity: 0;
+  }
+}
+
+@keyframes pantalla_final {
+  from {
+    transform: scale(1);
+    background-color: #feac16;
+  }
+  to {
+    transform: scale(20);
+    background-color: #f2ef2d;
+  }
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
+
+@keyframes desaparecer_texto {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(80px);
+  }
+}
+
+@keyframes permanecer_texto {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(80px);
+  }
 }
