@@ -10,6 +10,7 @@ function App() {
   const [final, setFinal] = useState(false);
   const [mostrarTextoFinal, setMostrarTextoFinal] = useState(false);
   const [textoMeQuiere, setTextoMeQuiere] = useState(true);
+  const [animacionEnProceso, setAnimacionEnProceso] = useState(false);
   let meQuiere = useRef(null);
   let floresRestantes = useRef(4);
 
@@ -28,20 +29,25 @@ function App() {
 
   const handleMeQuiereAnimacion = () => {
     floresRestantes.current = floresRestantes.current - 1;
+    setAnimacionEnProceso(true);
     if (floresRestantes.current > 0) {
+      meQuiere.current.classList.remove('invisible');
       meQuiere.current.classList.add('desaparecer');
     } else {
+      meQuiere.current.classList.remove('invisible');
       meQuiere.current.classList.add('permanecer');
     }
 
     setTextoMeQuiere(!textoMeQuiere);
 
-    if (floresRestantes.current > 0) {
-      const timer_texto_mequiere = setTimeout(() => {
+    const timer_texto_mequiere = setTimeout(() => {
+      if (floresRestantes.current > 0) {
         meQuiere.current.classList.remove('desaparecer');
-      }, 2100);
-      return () => clearTimeout(timer_texto_mequiere);
-    }
+        meQuiere.current.classList.add('invisible');
+      }
+      setAnimacionEnProceso(false);
+    }, 2100);
+    return () => clearTimeout(timer_texto_mequiere);
   };
 
   useEffect(() => {
@@ -57,18 +63,30 @@ function App() {
   }, [final]);
 
   const handleCaerDerecha = () => {
+    if (animacionEnProceso) {
+      return;
+    }
     setCaerDerecha(true);
     handleMeQuiereAnimacion();
   };
   const handleCaerArriba = () => {
+    if (animacionEnProceso) {
+      return;
+    }
     setCaerArriba(true);
     handleMeQuiereAnimacion();
   };
   const handleCaerAbajo = () => {
+    if (animacionEnProceso) {
+      return;
+    }
     setCaerAbajo(true);
     handleMeQuiereAnimacion();
   };
   const handleCaerIZquierda = () => {
+    if (animacionEnProceso) {
+      return;
+    }
     setCaerIzquierda(true);
     handleMeQuiereAnimacion();
   };
@@ -126,7 +144,7 @@ function App() {
           </div>
           <div className="w-4 h-[500px] mx-auto bg-green-700 text-green-700 rounded-md absolute bottom-[-310px] z-10"></div>
           <div
-            className=" absolute top-[-40px] right-4 z-30 text-5xl text-gray-200 drop-shadow-2xl opacity-0"
+            className=" absolute top-[-40px] right-4 z-30 text-5xl text-gray-200 drop-shadow-2xl opacity-0 invisible"
             ref={meQuiere}
           >
             {textoMeQuiere ? 'Me quiere' : 'No me quiere'}

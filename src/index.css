@@ -143,6 +143,7 @@ body {
     transform: translateY(-50px);
     right: -80px;
     opacity: 0;
+    display: none;
   }
 }
 
@@ -161,6 +162,7 @@ body {
     transform: translateY(-50px);
     left: -80px;
     opacity: 0;
+    display: none;
   }
 }
 
@@ -179,6 +181,7 @@ body {
     transform: translateX(50px);
     top: -80px;
     opacity: 0;
+    display: none;
   }
 }
 
@@ -197,6 +200,7 @@ body {
     transform: translateX(50px);
     bottom: -80px;
     opacity: 0;
+    display: none;
   }
 }
 
